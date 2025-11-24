@@ -16,7 +16,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="index, follow" />
 
-<title>{title} | By Interior Bydgoszcz</title>
+<title>{title} | ByInterior Bydgoszcz</title>
 <meta name="description" content={description} />
 {keywords && <meta name="keywords" content={keywords} />}
 <link rel="canonical" href={canonicalUrl} />
@@ -28,7 +28,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 <meta property="og:description" content={description} />
 <meta property="og:image" content={`${siteUrl}${ogImage}`} />
 <meta property="og:locale" content="pl_PL" />
-<meta property="og:site_name" content="By Interior - Projektowanie Wnętrz Bydgoszcz" />
+<meta property="og:site_name" content="ByInterior - Projektowanie Wnętrz Bydgoszcz" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +40,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "By Interior - Projektowanie Wnętrz Bydgoszcz",
+  "name": "ByInterior - Projektowanie Wnętrz Bydgoszcz",
   "image": `${siteUrl}/og-default.jpg`,
   "description": description,
   "@id": siteUrl,

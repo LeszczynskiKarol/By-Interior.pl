@@ -1,0 +1,469 @@
+---
+// src/pages/polityka-prywatnosci.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Polityka Prywatności - By Interior Bydgoszcz"
+  description="Polityka prywatności serwisu By Interior - informacje o przetwarzaniu danych osobowych i cookies."
+  keywords="polityka prywatności, RODO, cookies, ochrona danych, By Interior Bydgoszcz"
+>
+  <div class="legal-page">
+    <div class="container">
+      <h1 class="page-title">Polityka Prywatności</h1>
+      <p class="last-updated">
+        Ostatnia aktualizacja: {new Date().toLocaleDateString("pl-PL", { year: "numeric", month: "long", day: "numeric" })}
+      </p>
+
+      <nav class="toc">
+        <h2>Spis treści</h2>
+        <ol>
+          <li><a href="#wprowadzenie">Wprowadzenie</a></li>
+          <li><a href="#administrator">Administrator danych</a></li>
+          <li><a href="#dane">Zakres zbieranych danych</a></li>
+          <li><a href="#cele">Cele przetwarzania</a></li>
+          <li><a href="#prawa">Prawa użytkownika</a></li>
+          <li><a href="#cookies">Pliki cookies</a></li>
+          <li><a href="#bezpieczenstwo">Bezpieczeństwo danych</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ol>
+      </nav>
+
+      <section id="wprowadzenie" class="legal-section">
+        <h2>1. Wprowadzenie</h2>
+        <p>
+          Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych 
+          przekazanych przez Użytkowników w związku z korzystaniem z serwisu <strong>by-interior.pl</strong>.
+        </p>
+        <p>
+          Szanujemy Twoją prywatność i dokładamy wszelkich starań, aby chronić Twoje dane osobowe 
+          zgodnie z obowiązującymi przepisami, w tym Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 
+          2016/679 z dnia 27 kwietnia 2016 r. (RODO).
+        </p>
+      </section>
+
+      <section id="administrator" class="legal-section">
+        <h2>2. Administrator danych osobowych</h2>
+        <div class="info-box">
+          <p>
+            <strong>Administratorem danych osobowych jest:</strong><br/>
+            By Interior<br/>
+            ul. Przykładowa 10<br/>
+            85-001 Bydgoszcz<br/>
+            E-mail: <a href="mailto:kontakt@by-interior.pl">kontakt@by-interior.pl</a><br/>
+            Tel: +48 500 000 000
+          </p>
+        </div>
+        <p>
+          Administrator odpowiada za zapewnienie bezpieczeństwa danych osobowych 
+          przetwarzanych w ramach Serwisu.
+        </p>
+      </section>
+
+      <section id="dane" class="legal-section">
+        <h2>3. Zakres zbieranych danych</h2>
+        <h3>3.1. Dane podawane dobrowolnie</h3>
+        <p>W ramach korzystania z Serwisu możemy zbierać następujące dane:</p>
+        <ul>
+          <li><strong>Formularz kontaktowy:</strong> imię i nazwisko, adres e-mail, numer telefonu (opcjonalnie), treść wiadomości</li>
+          <li><strong>Załączniki:</strong> pliki graficzne i dokumenty przesyłane przez Użytkownika</li>
+        </ul>
+
+        <h3>3.2. Dane zbierane automatycznie</h3>
+        <p>Podczas korzystania z Serwisu automatycznie zbieramy:</p>
+        <ul>
+          <li>Adres IP</li>
+          <li>Typ przeglądarki i systemu operacyjnego</li>
+          <li>Dane o przeglądanych stronach</li>
+          <li>Czas spędzony w Serwisie</li>
+          <li>Źródło wejścia na stronę</li>
+        </ul>
+      </section>
+
+      <section id="cele" class="legal-section">
+        <h2>4. Cele i podstawy przetwarzania</h2>
+        <p>Twoje dane osobowe przetwarzamy w następujących celach:</p>
+        
+        <div class="purpose-grid">
+          <div class="purpose-item">
+            <h4>Obsługa zapytań</h4>
+            <p>Odpowiadanie na wiadomości przesłane przez formularz kontaktowy</p>
+            <span class="legal-basis">Podstawa: art. 6 ust. 1 lit. b RODO</span>
+          </div>
+          <div class="purpose-item">
+            <h4>Marketing bezpośredni</h4>
+            <p>Przesyłanie informacji o usługach (tylko za zgodą)</p>
+            <span class="legal-basis">Podstawa: art. 6 ust. 1 lit. a RODO</span>
+          </div>
+          <div class="purpose-item">
+            <h4>Analityka</h4>
+            <p>Analiza ruchu na stronie i optymalizacja Serwisu</p>
+            <span class="legal-basis">Podstawa: art. 6 ust. 1 lit. f RODO</span>
+          </div>
+          <div class="purpose-item">
+            <h4>Archiwizacja</h4>
+            <p>Przechowywanie danych dla celów rozliczeniowych</p>
+            <span class="legal-basis">Podstawa: art. 6 ust. 1 lit. c RODO</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="prawa" class="legal-section">
+        <h2>5. Prawa użytkownika</h2>
+        <p>W związku z przetwarzaniem Twoich danych osobowych przysługują Ci następujące prawa:</p>
+        <ul>
+          <li><strong>Prawo dostępu</strong> - możesz uzyskać informacje o przetwarzanych danych</li>
+          <li><strong>Prawo do sprostowania</strong> - możesz żądać poprawienia nieprawidłowych danych</li>
+          <li><strong>Prawo do usunięcia</strong> - możesz żądać usunięcia danych ("prawo do bycia zapomnianym")</li>
+          <li><strong>Prawo do ograniczenia przetwarzania</strong> - możesz żądać ograniczenia przetwarzania</li>
+          <li><strong>Prawo do przenoszenia danych</strong> - możesz otrzymać dane w formacie umożliwiającym przeniesienie</li>
+          <li><strong>Prawo do sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu danych</li>
+          <li><strong>Prawo do cofnięcia zgody</strong> - możesz w każdej chwili cofnąć udzieloną zgodę</li>
+        </ul>
+        <p>
+          Aby skorzystać z powyższych praw, skontaktuj się z nami: 
+          <a href="mailto:kontakt@by-interior.pl">kontakt@by-interior.pl</a>
+        </p>
+        <p>
+          Przysługuje Ci również prawo wniesienia skargi do organu nadzorczego - 
+          Prezesa Urzędu Ochrony Danych Osobowych.
+        </p>
+      </section>
+
+      <section id="cookies" class="legal-section">
+        <h2>6. Pliki cookies</h2>
+        <h3>6.1. Czym są cookies?</h3>
+        <p>
+          Cookies to małe pliki tekstowe zapisywane na Twoim urządzeniu przez przeglądarkę. 
+          Służą one do prawidłowego funkcjonowania Serwisu oraz zbierania danych statystycznych.
+        </p>
+
+        <h3>6.2. Rodzaje używanych cookies</h3>
+        <div class="cookies-grid">
+          <div class="cookie-type">
+            <h4>🔧 Niezbędne</h4>
+            <p>Zapewniają podstawowe funkcje Serwisu. Nie wymagają zgody.</p>
+          </div>
+          <div class="cookie-type">
+            <h4>📊 Analityczne</h4>
+            <p>Pomagają zrozumieć sposób korzystania z Serwisu. Wymagają zgody.</p>
+          </div>
+          <div class="cookie-type">
+            <h4>📢 Marketingowe</h4>
+            <p>Służą do personalizacji reklam. Wymagają zgody.</p>
+          </div>
+        </div>
+
+        <h3>6.3. Zarządzanie cookies</h3>
+        <p>
+          Możesz zarządzać ustawieniami cookies bezpośrednio w swojej przeglądarce 
+          lub poprzez baner cookies wyświetlany w naszym Serwisie.
+        </p>
+      </section>
+
+      <section id="bezpieczenstwo" class="legal-section">
+        <h2>7. Bezpieczeństwo danych</h2>
+        <p>
+          Stosujemy odpowiednie środki techniczne i organizacyjne w celu ochrony Twoich danych osobowych:
+        </p>
+        <ul>
+          <li>Szyfrowanie połączenia SSL/TLS</li>
+          <li>Regularne aktualizacje oprogramowania</li>
+          <li>Ograniczony dostęp do danych</li>
+          <li>Szkolenia personelu w zakresie ochrony danych</li>
+        </ul>
+      </section>
+
+      <section id="kontakt" class="legal-section">
+        <h2>8. Kontakt w sprawach prywatności</h2>
+        <p>
+          W przypadku pytań dotyczących przetwarzania danych osobowych lub chęci 
+          skorzystania z przysługujących Ci praw, skontaktuj się z nami:
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>E-mail:</strong> <a href="mailto:kontakt@by-interior.pl">kontakt@by-interior.pl</a>
+          </div>
+          <div class="contact-item">
+            <strong>Telefon:</strong> <a href="tel:+48500000000">+48 500 000 000</a>
+          </div>
+          <div class="contact-item">
+            <strong>Adres:</strong> ul. Przykładowa 10, 85-001 Bydgoszcz
+          </div>
+        </div>
+      </section>
+
+      <section class="legal-footer">
+        <div class="related-docs">
+          <p><strong>Zobacz również:</strong></p>
+          <ul>
+            <li><a href="/regulamin">Regulamin Serwisu</a></li>
+            <li><a href="/#kontakt">Formularz kontaktowy</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 6rem 0 4rem;
+    background: linear-gradient(to bottom, #f8fafc, white);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .last-updated {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .toc h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1rem;
+  }
+
+  .toc ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  .toc li {
+    margin-bottom: 0.5rem;
+  }
+
+  .toc a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover {
+    color: #14b8a6;
+  }
+
+  .legal-section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .legal-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #14b8a6;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .legal-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .legal-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475569;
+    margin: 0 0 0.5rem;
+  }
+
+  .legal-section p {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-section ul {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .legal-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-section a {
+    color: #14b8a6;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .legal-section a:hover {
+    color: #0d9488;
+    text-decoration: underline;
+  }
+
+  .info-box {
+    background: #f0fdfa;
+    border-left: 4px solid #14b8a6;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-box p {
+    margin: 0;
+  }
+
+  .purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .purpose-item {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .purpose-item h4 {
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+
+  .purpose-item p {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-basis {
+    font-size: 0.75rem;
+    color: #14b8a6;
+    font-weight: 500;
+  }
+
+  .cookies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .cookie-type {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+
+  .cookie-type h4 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cookie-type p {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .contact-info {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+  }
+
+  .contact-item {
+    margin-bottom: 0.75rem;
+    color: #475569;
+  }
+
+  .contact-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .related-docs {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .related-docs p {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.75rem;
+  }
+
+  .related-docs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-docs li {
+    margin-bottom: 0.5rem;
+  }
+
+  .related-docs a {
+    color: #14b8a6;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .related-docs a::before {
+    content: "→";
+    margin-right: 0.5rem;
+  }
+
+  .related-docs a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .legal-section h2 {
+      font-size: 1.25rem;
+    }
+
+    .purpose-grid,
+    .cookies-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

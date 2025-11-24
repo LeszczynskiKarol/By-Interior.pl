@@ -1,0 +1,115 @@
+---
+// src/components/Hero.astro
+---
+
+<section class="relative min-h-[92vh] flex items-center overflow-hidden bg-slate-950">
+  <!-- Animated background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-teal-950"></div>
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+  </div>
+
+  <!-- Grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Content -->
+      <div class="animate-fade-in">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/20 rounded-full text-teal-400 text-sm font-medium mb-6">
+          <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
+          Studio projektowe w Bydgoszczy
+        </div>
+        
+        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 leading-[1.1]">
+          Projektowanie<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-teal-300">wnętrz</span> Bydgoszcz
+        </h1>
+        
+        <p class="text-xl text-slate-300 mb-10 leading-relaxed max-w-xl">
+          Przekształcamy wizje w wyjątkowe przestrzenie. Łączymy minimalistyczną estetykę z funkcjonalnością, tworząc wnętrza dopasowane do Twojego stylu życia.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#kontakt" class="group bg-gradient-to-r from-teal-500 to-teal-400 text-slate-900 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:shadow-teal-500/25 transition-all transform hover:scale-105 text-center">
+            Bezpłatna konsultacja
+            <svg class="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+          <a href="#portfolio" class="border-2 border-slate-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-slate-900 hover:border-white transition-all text-center">
+            Zobacz realizacje
+          </a>
+        </div>
+        
+        <!-- Trust indicators -->
+        <div class="flex flex-wrap gap-8 mt-14 pt-8 border-t border-slate-800">
+          <div class="flex items-center gap-3">
+            <div class="flex -space-x-1">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-xs text-white font-bold">★</div>
+            </div>
+            <div>
+              <div class="text-white font-semibold">5.0 / 5.0</div>
+              <div class="text-slate-500 text-xs">Ocena klientów</div>
+            </div>
+          </div>
+          <div>
+            <div class="text-white font-semibold">120+</div>
+            <div class="text-slate-500 text-xs">Zrealizowanych projektów</div>
+          </div>
+          <div>
+            <div class="text-white font-semibold">8 lat</div>
+            <div class="text-slate-500 text-xs">Doświadczenia</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="relative animate-slide-left hidden lg:block">
+        <div class="relative">
+          <!-- Decorative frame -->
+          <div class="absolute -inset-4 bg-gradient-to-br from-teal-500/20 to-transparent rounded-3xl"></div>
+          
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+            <img 
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" 
+              alt="Nowoczesne wnętrze zaprojektowane przez By Interior Bydgoszcz"
+              class="w-full h-[600px] object-cover"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+          </div>
+          
+          <!-- Floating stats card -->
+          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-slate-900">100%</div>
+                <div class="text-sm text-slate-500">Zadowolonych klientów</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating badge -->
+          <div class="absolute -top-4 -right-4 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-xl">
+            <div class="text-xs text-teal-400 font-medium">Projekt miesiąca</div>
+            <div class="text-sm font-semibold">Apartament Bydgoszcz</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+    <div class="w-6 h-10 border-2 border-slate-600 rounded-full flex justify-center">
+      <div class="w-1.5 h-3 bg-teal-400 rounded-full mt-2 animate-bounce"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,293 @@
+---
+// src/components/ConsentBanner.astro
+---
+
+<div id="consent-banner" class="consent-banner" role="dialog" aria-label="Zarządzanie cookies" aria-hidden="true">
+  <div class="consent-content">
+    <div class="consent-header">
+      <h3>🍪 Szanujemy Twoją prywatność</h3>
+      <p>
+        Używamy plików cookies, aby zapewnić prawidłowe działanie strony i poprawić Twoje doświadczenia. 
+        Możesz dostosować swoje preferencje lub zaakceptować wszystkie.
+      </p>
+    </div>
+    
+    <div class="consent-actions">
+      <button id="accept-all" class="btn-primary">Akceptuj wszystkie</button>
+      <button id="accept-necessary" class="btn-secondary">Tylko niezbędne</button>
+      <button id="show-settings" class="btn-link">Ustawienia</button>
+    </div>
+
+    <div id="consent-settings" class="consent-settings hidden">
+      <div class="consent-option">
+        <div class="option-header">
+          <label class="option-label">
+            <input type="checkbox" id="necessary-cookies" checked disabled />
+            <span>Niezbędne</span>
+          </label>
+          <span class="always-on">Zawsze aktywne</span>
+        </div>
+        <p class="option-desc">Wymagane do prawidłowego działania strony.</p>
+      </div>
+
+      <div class="consent-option">
+        <div class="option-header">
+          <label class="option-label">
+            <input type="checkbox" id="analytics-cookies" />
+            <span>Analityczne</span>
+          </label>
+        </div>
+        <p class="option-desc">Pomagają zrozumieć, jak korzystasz ze strony.</p>
+      </div>
+
+      <div class="consent-option">
+        <div class="option-header">
+          <label class="option-label">
+            <input type="checkbox" id="marketing-cookies" />
+            <span>Marketingowe</span>
+          </label>
+        </div>
+        <p class="option-desc">Służą do personalizacji reklam.</p>
+      </div>
+
+      <button id="save-settings" class="btn-primary mt-4">Zapisz ustawienia</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .consent-banner.show {
+    transform: translateY(0);
+  }
+
+  .consent-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+
+  .consent-header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+
+  .consent-header p {
+    color: #64748b;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #14b8a6, #0d9488);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: #e2e8f0;
+  }
+
+  .btn-link {
+    background: none;
+    border: none;
+    color: #14b8a6;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.75rem;
+  }
+
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+
+  .consent-settings {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .consent-settings.hidden {
+    display: none;
+  }
+
+  .consent-option {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #0f172a;
+  }
+
+  .option-label input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: #14b8a6;
+  }
+
+  .always-on {
+    font-size: 0.75rem;
+    color: #14b8a6;
+    font-weight: 500;
+  }
+
+  .option-desc {
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    font-size: 0.8125rem;
+    color: #64748b;
+  }
+
+  .mt-4 {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .consent-actions {
+      flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    const STORAGE_KEY = 'by_interior_consent';
+    const banner = document.getElementById('consent-banner');
+    const settingsPanel = document.getElementById('consent-settings');
+    
+    function showBanner() {
+      banner?.classList.add('show');
+      banner?.setAttribute('aria-hidden', 'false');
+    }
+    
+    function hideBanner() {
+      banner?.classList.remove('show');
+      banner?.setAttribute('aria-hidden', 'true');
+    }
+    
+    function saveConsent(consent) {
+      const data = { consent, timestamp: Date.now() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'consent_update', consent });
+      
+      hideBanner();
+    }
+    
+    // Check if consent exists
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      setTimeout(showBanner, 1000);
+    }
+    
+    // Accept all
+    document.getElementById('accept-all')?.addEventListener('click', () => {
+      saveConsent({
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        functionality_storage: 'granted',
+        personalization_storage: 'granted',
+        security_storage: 'granted'
+      });
+    });
+    
+    // Accept necessary only
+    document.getElementById('accept-necessary')?.addEventListener('click', () => {
+      saveConsent({
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        functionality_storage: 'granted',
+        personalization_storage: 'denied',
+        security_storage: 'granted'
+      });
+    });
+    
+    // Show settings
+    document.getElementById('show-settings')?.addEventListener('click', () => {
+      settingsPanel?.classList.toggle('hidden');
+    });
+    
+    // Save custom settings
+    document.getElementById('save-settings')?.addEventListener('click', () => {
+      const analytics = document.getElementById('analytics-cookies')?.checked;
+      const marketing = document.getElementById('marketing-cookies')?.checked;
+      
+      saveConsent({
+        ad_storage: marketing ? 'granted' : 'denied',
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_user_data: marketing ? 'granted' : 'denied',
+        ad_personalization: marketing ? 'granted' : 'denied',
+        functionality_storage: 'granted',
+        personalization_storage: analytics ? 'granted' : 'denied',
+        security_storage: 'granted'
+      });
+    });
+    
+    // Expose for cookie button
+    window.consentManager = {
+      showConsentModal: showBanner
+    };
+  })();
+</script>

@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Team from '../components/Team.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Aranżacje Wnętrz Bydgoszcz - Mieszkań i Domów',
+  description: 'Profesjonalne aranżacje wnętrz w Bydgoszczy. Kompleksowe aranżacje mieszkań i domów jednorodzinnych. Indywidualne projekty dopasowane do Twoich potrzeb. Bezpłatna konsultacja.',
+  keywords: 'aranżacje wnętrz Bydgoszcz, aranżacje mieszkań Bydgoszcz, aranżacje domów Bydgoszcz, aranżacja wnętrz, projekt aranżacji, By Interior',
+  canonical: '/aranzacje-wnetrz'
+};
+
+const apartmentTypes = [
+  {
+    title: 'Kawalerki i małe mieszkania',
+    area: '20-40 m²',
+    description: 'Inteligentne rozwiązania maksymalizujące przestrzeń w kompaktowych wnętrzach.',
+    features: ['Wielofunkcyjne meble', 'Optymalizacja przestrzeni', 'Smart storage', 'Jasna kolorystyka'],
+    price: 'od 2500 zł'
+  },
+  {
+    title: 'Mieszkania 2-3 pokojowe',
+    area: '40-70 m²',
+    description: 'Funkcjonalne strefy dla singli, par i rodzin z dziećmi.',
+    features: ['Podział na strefy', 'Ergonomia przestrzeni', 'Praktyczne rozwiązania', 'Spójny design'],
+    price: 'od 4500 zł'
+  },
+  {
+    title: 'Duże apartamenty',
+    area: '70-150 m²',
+    description: 'Ekskluzywne aranżacje z dbałością o każdy detal i wysoką jakość materiałów.',
+    features: ['Premium materiały', 'Indywidualny charakter', 'Przestronne wnętrza', 'Pełna dokumentacja'],
+    price: 'od 7000 zł'
+  }
+];
+
+const styles = [
+  { name: 'Skandynawski', desc: 'Jasne kolory, naturalne materiały, minimalizm', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80' },
+  { name: 'Nowoczesny', desc: 'Czyste linie, geometria, technologia', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80' },
+  { name: 'Industrialny', desc: 'Surowe materiały, otwarte przestrzenie', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80' },
+  { name: 'Klasyczny', desc: 'Ponadczasowa elegancja, symetria', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80' }
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80" 
+        alt="Aranżacje wnętrz Bydgoszcz"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/50"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/20 border border-teal-500/30 rounded-full text-teal-400 text-sm font-medium mb-6">
+          Aranżacje wnętrz
+        </div>
+        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6">
+          Aranżacje <span class="text-teal-400">wnętrz</span> Bydgoszcz
+        </h1>
+        <p class="text-xl text-white/80 mb-8 leading-relaxed">
+          Tworzymy funkcjonalne i estetyczne aranżacje mieszkań oraz domów. Od koncepcji przez projekt po realizację – kompleksowo przeprowadzimy Cię przez cały proces.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#mieszkania" class="bg-teal-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-teal-600 transition-all">
+            Aranżacje mieszkań
+          </a>
+          <a href="#kontakt" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition-all">
+            Bezpłatna wycena
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is arrangement -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16 fade-in-observe">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Czym jest <span class="text-teal-600">aranżacja wnętrz</span>?
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Aranżacja wnętrz to kompleksowy proces tworzenia przestrzeni, która harmonijnie łączy funkcjonalność z estetyką. To więcej niż dobór mebli i kolorów – to projektowanie środowiska wspierającego codzienne życie.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in-observe">
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">
+              Kompleksowe podejście
+            </h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              Profesjonalna aranżacja obejmuje analizę przestrzeni, planowanie funkcjonalne, dobór materiałów i kolorystyki, projekt oświetlenia oraz specyfikację wyposażenia. Każdy element jest przemyślany pod kątem ergonomii i estetyki.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-slate-600">
+                <svg class="w-5 h-5 text-teal-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Analiza potrzeb i stylu życia
+              </li>
+              <li class="flex items-center gap-3 text-slate-600">
+                <svg class="w-5 h-5 text-teal-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Optymalizacja rozkładu pomieszczeń
+              </li>
+              <li class="flex items-center gap-3 text-slate-600">
+                <svg class="w-5 h-5 text-teal-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Dobór materiałów i kolorystyki
+              </li>
+              <li class="flex items-center gap-3 text-slate-600">
+                <svg class="w-5 h-5 text-teal-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Wizualizacje 3D i dokumentacja
+              </li>
+            </ul>
+          </div>
+          <div class="fade-in-observe">
+            <img 
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" 
+              alt="Przykład aranżacji wnętrza"
+              class="rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apartment types -->
+  <section id="mieszkania" class="py-24 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-in-observe">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Aranżacje <span class="text-teal-600">mieszkań</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+          Specjalizujemy się w aranżacjach mieszkań każdej wielkości. Od kawalerek po przestronne apartamenty – tworzymy wnętrza funkcjonalne i estetyczne.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        {apartmentTypes.map((type, index) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all fade-in-observe" style={`animation-delay: ${index * 100}ms`}>
+            <div class="bg-gradient-to-br from-teal-500 to-teal-600 p-8 text-white">
+              <h3 class="font-display text-2xl font-bold mb-2">{type.title}</h3>
+              <div class="text-teal-100">{type.area}</div>
+            </div>
+            <div class="p-8">
+              <p class="text-slate-600 mb-6">{type.description}</p>
+              <ul class="space-y-2 mb-6">
+                {type.features.map(feature => (
+                  <li class="flex items-center text-sm text-slate-600">
+                    <svg class="w-4 h-4 text-teal-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div class="pt-6 border-t border-slate-100">
+                <span class="text-2xl font-bold text-teal-600">{type.price}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Styles -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-in-observe">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Style <span class="text-teal-600">aranżacji</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Realizujemy projekty w różnych stylach. Każda aranżacja jest unikalna i dopasowana do Twoich preferencji.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {styles.map((style, index) => (
+          <div class="group relative rounded-2xl overflow-hidden fade-in-observe" style={`animation-delay: ${index * 80}ms`}>
+            <img 
+              src={style.image} 
+              alt={`Styl ${style.name}`}
+              class="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent flex items-end p-6">
+              <div>
+                <h3 class="font-display text-xl font-bold text-white mb-1">{style.name}</h3>
+                <p class="text-white/70 text-sm">{style.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Team />
+  <Testimonials />
+  <CTA />
+  <Contact />
+</BaseLayout>

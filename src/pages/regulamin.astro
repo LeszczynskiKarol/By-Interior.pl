@@ -1,0 +1,379 @@
+---
+// src/pages/regulamin.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Regulamin Serwisu - By Interior Bydgoszcz"
+  description="Regulamin korzystania z serwisu internetowego By Interior - studio projektowania wnętrz w Bydgoszczy"
+  keywords="regulamin, warunki korzystania, By Interior Bydgoszcz"
+>
+  <div class="legal-page">
+    <div class="container">
+      <h1 class="page-title">Regulamin Serwisu</h1>
+      <p class="last-updated">
+        Ostatnia aktualizacja: {new Date().toLocaleDateString("pl-PL", { year: "numeric", month: "long", day: "numeric" })}
+      </p>
+
+      <nav class="toc">
+        <h2>Spis treści</h2>
+        <ol>
+          <li><a href="#postanowienia">Postanowienia ogólne</a></li>
+          <li><a href="#definicje">Definicje</a></li>
+          <li><a href="#warunki">Warunki korzystania</a></li>
+          <li><a href="#wlasnosc">Własność intelektualna</a></li>
+          <li><a href="#formularz">Formularz kontaktowy</a></li>
+          <li><a href="#odpowiedzialnosc">Odpowiedzialność</a></li>
+          <li><a href="#zmiany">Zmiany regulaminu</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ol>
+      </nav>
+
+      <section id="postanowienia" class="legal-section">
+        <h2>1. Postanowienia ogólne</h2>
+        <p>
+          Niniejszy Regulamin określa zasady korzystania z serwisu internetowego 
+          dostępnego pod adresem <strong>by-interior.pl</strong> (zwanego dalej "Serwisem").
+        </p>
+        <div class="info-box">
+          <p>
+            <strong>Administratorem Serwisu jest:</strong><br/>
+            By Interior<br/>
+            ul. Przykładowa 10<br/>
+            85-001 Bydgoszcz<br/>
+            NIP: XXX-XXX-XX-XX<br/>
+            E-mail: <a href="mailto:kontakt@by-interior.pl">kontakt@by-interior.pl</a><br/>
+            Tel: +48 500 000 000
+          </p>
+        </div>
+        <p>
+          Korzystanie z Serwisu jest dobrowolne i wymaga akceptacji niniejszego Regulaminu. 
+          Rozpoczęcie korzystania z Serwisu oznacza akceptację wszystkich postanowień Regulaminu.
+        </p>
+      </section>
+
+      <section id="definicje" class="legal-section">
+        <h2>2. Definicje</h2>
+        <p>Pojęcia użyte w Regulaminie oznaczają:</p>
+        <ul>
+          <li><strong>Serwis</strong> - strona internetowa prowadzona przez Administratora pod adresem by-interior.pl wraz z wszystkimi podstronami.</li>
+          <li><strong>Administrator</strong> - właściciel i operator Serwisu.</li>
+          <li><strong>Użytkownik</strong> - każda osoba fizyczna, prawna lub jednostka organizacyjna korzystająca z Serwisu.</li>
+          <li><strong>Treści</strong> - wszystkie materiały publikowane w Serwisie, w tym teksty, grafiki, zdjęcia, logo, filmy.</li>
+          <li><strong>Formularz kontaktowy</strong> - interaktywny formularz umożliwiający przesłanie zapytania do Administratora.</li>
+        </ul>
+      </section>
+
+      <section id="warunki" class="legal-section">
+        <h2>3. Warunki korzystania z Serwisu</h2>
+        <h3>3.1. Zasady ogólne</h3>
+        <p>Użytkownik korzystając z Serwisu zobowiązuje się do:</p>
+        <ul>
+          <li>Korzystania z Serwisu w sposób zgodny z prawem i dobrymi obyczajami</li>
+          <li>Nienaruszania praw Administratora oraz innych Użytkowników</li>
+          <li>Niepodejmowania działań mogących zakłócić funkcjonowanie Serwisu</li>
+          <li>Nieumieszczania w Serwisie treści niezgodnych z prawem</li>
+        </ul>
+
+        <h3>3.2. Wymagania techniczne</h3>
+        <p>Korzystanie z Serwisu wymaga:</p>
+        <ul>
+          <li>Urządzenia z dostępem do Internetu</li>
+          <li>Przeglądarki internetowej w aktualnej wersji</li>
+          <li>Włączonej obsługi JavaScript</li>
+          <li>Akceptacji plików cookies niezbędnych do działania Serwisu</li>
+        </ul>
+      </section>
+
+      <section id="wlasnosc" class="legal-section">
+        <h2>4. Własność intelektualna</h2>
+        <p>
+          Wszystkie Treści publikowane w Serwisie, w tym teksty, grafiki, zdjęcia, 
+          logo, układ graficzny, są objęte ochroną prawnoautorską i stanowią własność 
+          Administratora lub są używane za zgodą właścicieli praw.
+        </p>
+        <p>Użytkownik może:</p>
+        <ul>
+          <li>Przeglądać Treści w Serwisie wyłącznie w celach informacyjnych</li>
+          <li>Pobierać i drukować pojedyncze fragmenty Treści do użytku osobistego</li>
+          <li>Udostępniać linki do Serwisu w mediach społecznościowych</li>
+        </ul>
+        <p>
+          Wykorzystywanie Treści w innych celach wymaga pisemnej zgody Administratora.
+        </p>
+      </section>
+
+      <section id="formularz" class="legal-section">
+        <h2>5. Formularz kontaktowy</h2>
+        <p>
+          Serwis udostępnia Formularz kontaktowy służący do przesyłania zapytań 
+          dotyczących usług projektowania wnętrz.
+        </p>
+        <p>Wysyłając wiadomość przez Formularz kontaktowy podajesz:</p>
+        <ul>
+          <li><strong>Imię i nazwisko</strong> - pole obowiązkowe</li>
+          <li><strong>Adres e-mail</strong> - pole obowiązkowe</li>
+          <li><strong>Numer telefonu</strong> - pole opcjonalne</li>
+          <li><strong>Treść wiadomości</strong> - pole obowiązkowe</li>
+        </ul>
+        <p>
+          Dane osobowe podane w Formularzu kontaktowym są przetwarzane zgodnie 
+          z <a href="/polityka-prywatnosci">Polityką Prywatności</a> wyłącznie 
+          w celu udzielenia odpowiedzi na zapytanie.
+        </p>
+      </section>
+
+      <section id="odpowiedzialnosc" class="legal-section">
+        <h2>6. Odpowiedzialność</h2>
+        <p>Administrator nie ponosi odpowiedzialności za:</p>
+        <ul>
+          <li>Awarie sprzętu, oprogramowania, przerwy w dostępie do Internetu po stronie Użytkownika</li>
+          <li>Treści i działania serwisów zewnętrznych, do których prowadzą linki</li>
+          <li>Decyzje podjęte przez Użytkownika na podstawie informacji z Serwisu</li>
+          <li>Zabezpieczenie urządzenia i połączenia internetowego Użytkownika</li>
+        </ul>
+        <p>
+          Informacje zawarte w Serwisie mają charakter ogólny i informacyjny. 
+          Nie stanowią oferty handlowej w rozumieniu Kodeksu Cywilnego.
+        </p>
+      </section>
+
+      <section id="zmiany" class="legal-section">
+        <h2>7. Zmiany Regulaminu</h2>
+        <p>
+          Administrator zastrzega sobie prawo do wprowadzania zmian w Regulaminie. 
+          O istotnych zmianach Administrator poinformuje poprzez wyraźne powiadomienie 
+          na stronie głównej Serwisu.
+        </p>
+        <p>
+          Zmiany wchodzą w życie w terminie wskazanym przy ich publikacji, 
+          nie wcześniej jednak niż po upływie 7 dni od ogłoszenia.
+        </p>
+      </section>
+
+      <section id="kontakt" class="legal-section">
+        <h2>8. Kontakt</h2>
+        <p>
+          W sprawach związanych z Regulaminem lub działaniem Serwisu 
+          możesz skontaktować się z Administratorem:
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <strong>E-mail:</strong> <a href="mailto:kontakt@by-interior.pl">kontakt@by-interior.pl</a>
+          </div>
+          <div class="contact-item">
+            <strong>Telefon:</strong> <a href="tel:+48500000000">+48 500 000 000</a>
+          </div>
+          <div class="contact-item">
+            <strong>Adres:</strong> ul. Przykładowa 10, 85-001 Bydgoszcz
+          </div>
+        </div>
+      </section>
+
+      <section class="legal-footer">
+        <div class="related-docs">
+          <p><strong>Zobacz również:</strong></p>
+          <ul>
+            <li><a href="/polityka-prywatnosci">Polityka Prywatności</a></li>
+            <li><a href="/#kontakt">Formularz kontaktowy</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding: 6rem 0 4rem;
+    background: linear-gradient(to bottom, #f8fafc, white);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .last-updated {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .toc h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 1rem;
+  }
+
+  .toc ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  .toc li {
+    margin-bottom: 0.5rem;
+  }
+
+  .toc a {
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover {
+    color: #14b8a6;
+  }
+
+  .legal-section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 6rem;
+  }
+
+  .legal-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #14b8a6;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .legal-section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .legal-section p {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-section ul {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .legal-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-section a {
+    color: #14b8a6;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .legal-section a:hover {
+    color: #0d9488;
+    text-decoration: underline;
+  }
+
+  .info-box {
+    background: #f0fdfa;
+    border-left: 4px solid #14b8a6;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-box p {
+    margin: 0;
+  }
+
+  .contact-info {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+  }
+
+  .contact-item {
+    margin-bottom: 0.75rem;
+    color: #475569;
+  }
+
+  .contact-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .related-docs {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .related-docs p {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.75rem;
+  }
+
+  .related-docs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .related-docs li {
+    margin-bottom: 0.5rem;
+  }
+
+  .related-docs a {
+    color: #14b8a6;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .related-docs a::before {
+    content: "→";
+    margin-right: 0.5rem;
+  }
+
+  .related-docs a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .legal-section h2 {
+      font-size: 1.25rem;
+    }
+  }
+</style>

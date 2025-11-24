@@ -1,0 +1,199 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import ConsentBanner from "../components/ConsentBanner.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const { title, description, keywords, ogImage = "/og-default.jpg", canonical } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "consent_default",
+        consent: {
+          ad_storage: "denied",
+          analytics_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          functionality_storage: "granted",
+          personalization_storage: "denied",
+          security_storage: "granted",
+          wait_for_update: 3000,
+        },
+      });
+      try {
+        const savedConsent = localStorage.getItem("by_interior_consent");
+        if (savedConsent) {
+          const parsed = JSON.parse(savedConsent);
+          if (parsed.timestamp && Date.now() - parsed.timestamp < 365 * 24 * 60 * 60 * 1000) {
+            window.dataLayer.push({ event: "consent_update", consent: parsed.consent });
+          }
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- GTM placeholder - dodaj swój GTM ID -->
+    <!--
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-XXXXXXX');
+    </script>
+    -->
+
+    <SEO
+      title={title}
+      description={description}
+      keywords={keywords}
+      ogImage={ogImage}
+      canonical={canonical}
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #0f172a;
+        --brand: #14b8a6;
+        --brand-dark: #0d9488;
+        --gray: #64748b;
+        --light: #f8fafc;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: "DM Sans", system-ui, sans-serif;
+        line-height: 1.6;
+        color: var(--primary);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .font-display { font-family: "Cormorant Garamond", serif; }
+      html { scroll-behavior: smooth; }
+      img, video { max-width: 100%; height: auto; }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+      
+      @keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .animate-slide-left { animation: slideInLeft 0.8s ease-out forwards; }
+      
+      .fade-in-observe {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .fade-in-observe.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .cookie-settings-floating {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 24px;
+        z-index: 9990;
+        transition: all 0.3s ease;
+      }
+      .cookie-settings-floating:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        border-color: #14b8a6;
+      }
+      @media (max-width: 640px) {
+        .cookie-settings-floating { bottom: 70px; }
+      }
+    </style>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="theme-color" content="#14b8a6">
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <ConsentBanner />
+    
+    <button
+      id="cookie-settings-floating"
+      class="cookie-settings-floating"
+      aria-label="Ustawienia cookies"
+      title="Zarządzaj zgodami cookies"
+    >🍪</button>
+
+    <script is:inline>
+      const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".fade-in-observe").forEach((el) => observer.observe(el));
+        
+        const cookieButton = document.getElementById("cookie-settings-floating");
+        if (cookieButton) {
+          cookieButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            const banner = document.getElementById("consent-banner");
+            if (banner) {
+              banner.classList.add("show");
+              banner.setAttribute("aria-hidden", "false");
+            }
+          });
+        }
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const href = this.getAttribute("href");
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

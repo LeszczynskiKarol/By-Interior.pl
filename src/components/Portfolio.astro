@@ -1,0 +1,206 @@
+---
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description?: string;
+  location?: string;
+  area?: string;
+  year?: string;
+}
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: 'Apartament Śródmieście',
+    category: 'Mieszkanie',
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
+    description: 'Nowoczesny apartament w centrum Bydgoszczy z panoramicznym widokiem',
+    location: 'Bydgoszcz',
+    area: '95 m²',
+    year: '2024'
+  },
+  {
+    id: 2,
+    title: 'Rezydencja Fordon',
+    category: 'Dom jednorodzinny',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+    description: 'Elegancka willa z ogrodem w spokojnej dzielnicy',
+    location: 'Bydgoszcz-Fordon',
+    area: '280 m²',
+    year: '2024'
+  },
+  {
+    id: 3,
+    title: 'Loft Przemysłowa',
+    category: 'Mieszkanie',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+    description: 'Industrialny loft w zaadaptowanej przestrzeni pofabrycznej',
+    location: 'Bydgoszcz',
+    area: '120 m²',
+    year: '2023'
+  },
+  {
+    id: 4,
+    title: 'Biuro Kreatywne',
+    category: 'Przestrzeń komercyjna',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+    description: 'Nowoczesna przestrzeń biurowa dla agencji marketingowej',
+    location: 'Bydgoszcz',
+    area: '200 m²',
+    year: '2024'
+  },
+  {
+    id: 5,
+    title: 'Penthouse Wyspa Młyńska',
+    category: 'Mieszkanie',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+    description: 'Luksusowy penthouse z tarasem i widokiem na Brdę',
+    location: 'Bydgoszcz',
+    area: '150 m²',
+    year: '2023'
+  },
+  {
+    id: 6,
+    title: 'Restauracja Nadrzeczna',
+    category: 'Przestrzeń komercyjna',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
+    description: 'Elegancka restauracja nad Brdą z unikalnym wystrojem',
+    location: 'Bydgoszcz',
+    area: '180 m²',
+    year: '2023'
+  }
+];
+---
+
+<section id="portfolio" class="py-24 bg-white">
+  <div class="container mx-auto px-4 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 fade-in-observe">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 rounded-full text-teal-600 text-sm font-medium mb-4">
+        Portfolio
+      </div>
+      <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+        Nasze <span class="text-teal-600">realizacje</span>
+      </h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        Odkryj wybrane projekty wnętrz zrealizowane przez nasze studio w Bydgoszczy i okolicach.
+      </p>
+    </div>
+
+    <!-- Filter -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <button data-filter="all" class="filter-btn active px-6 py-2.5 rounded-full font-medium transition-all">
+        Wszystkie
+      </button>
+      <button data-filter="Mieszkanie" class="filter-btn px-6 py-2.5 rounded-full font-medium transition-all">
+        Mieszkania
+      </button>
+      <button data-filter="Dom jednorodzinny" class="filter-btn px-6 py-2.5 rounded-full font-medium transition-all">
+        Domy
+      </button>
+      <button data-filter="Przestrzeń komercyjna" class="filter-btn px-6 py-2.5 rounded-full font-medium transition-all">
+        Komercyjne
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+      {projects.map((project, index) => (
+        <div 
+          class="portfolio-item group cursor-pointer fade-in-observe"
+          data-category={project.category}
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class="relative overflow-hidden rounded-2xl bg-slate-100">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div class="flex items-center gap-2 text-teal-400 text-sm mb-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  </svg>
+                  {project.location}
+                </div>
+                <p class="text-white/80 text-sm">{project.description}</p>
+                <div class="flex gap-4 mt-3 text-sm text-white/60">
+                  <span>{project.area}</span>
+                  <span>{project.year}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <span class="text-teal-600 text-sm font-medium">{project.category}</span>
+            <h3 class="font-display text-xl font-bold text-slate-900 mt-1 group-hover:text-teal-600 transition-colors">{project.title}</h3>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <a href="/realizacje" class="inline-flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-medium hover:bg-slate-800 transition-all hover:shadow-xl transform hover:scale-105">
+        Zobacz wszystkie projekty
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .filter-btn {
+    background: white;
+    border: 2px solid #e2e8f0;
+    color: #64748b;
+  }
+  .filter-btn:hover {
+    border-color: #14b8a6;
+    color: #14b8a6;
+  }
+  .filter-btn.active {
+    background: linear-gradient(135deg, #14b8a6, #0d9488);
+    border-color: #14b8a6;
+    color: white;
+  }
+  .portfolio-item.hidden {
+    display: none;
+  }
+  .portfolio-item.filtering {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const portfolioItems = document.querySelectorAll<HTMLElement>('.portfolio-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      if (!filter) return;
+
+      portfolioItems.forEach(item => {
+        const category = item.dataset.category;
+        if (filter === 'all' || category === filter) {
+          item.classList.remove('hidden', 'filtering');
+        } else {
+          item.classList.add('filtering');
+          setTimeout(() => item.classList.add('hidden'), 300);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,344 @@
+---
+// src/pages/projektowanie-mebli.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Meble na Wymiar Bydgoszcz - Projektowanie Mebli | By Interior',
+  description: 'Projektowanie mebli na wymiar w Bydgoszczy. Indywidualne projekty kuchni, szaf, garderoby i zabudów. Nowoczesne meble dopasowane do Twojego wnętrza.',
+  keywords: 'meble na wymiar Bydgoszcz, projektowanie mebli Bydgoszcz, kuchnie na wymiar, szafy na wymiar, garderoba na wymiar, By Interior',
+  canonical: 'https://by-interior.pl/projektowanie-mebli'
+};
+
+const furnitureTypes = [
+  {
+    title: 'Kuchnie na wymiar',
+    description: 'Ergonomiczne kuchnie projektowane z myślą o codziennym komforcie i funkcjonalności.',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+    features: ['Optymalizacja przestrzeni', 'Dobór materiałów', 'Integracja AGD']
+  },
+  {
+    title: 'Szafy i garderoby',
+    description: 'Systemy przechowywania dostosowane do Twoich potrzeb i dostępnej przestrzeni.',
+    image: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=800&q=80',
+    features: ['Maksymalizacja pojemności', 'Systemy organizacji', 'Oświetlenie LED']
+  },
+  {
+    title: 'Zabudowy meblowe',
+    description: 'Kompleksowe zabudowy wykorzystujące każdy centymetr przestrzeni.',
+    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80',
+    features: ['Niestandardowe wymiary', 'Ukryte schowki', 'Spójność z wnętrzem']
+  },
+  {
+    title: 'Meble pokojowe',
+    description: 'Unikalne meble do salonu, sypialni i pokoi dziecięcych projektowane na indywidualne zamówienie.',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80',
+    features: ['Autorskie projekty', 'Wysokiej jakości materiały', 'Trwałość wykonania']
+  }
+];
+
+const process = [
+  {
+    step: '01',
+    title: 'Konsultacja i pomiary',
+    description: 'Spotkanie w domu klienta, dokładne pomiary przestrzeni i omówienie oczekiwań.'
+  },
+  {
+    step: '02',
+    title: 'Projekt koncepcyjny',
+    description: 'Przygotowanie wizualizacji 3D z różnymi wariantami rozwiązań do wyboru.'
+  },
+  {
+    step: '03',
+    title: 'Dobór materiałów',
+    description: 'Wspólny wybór frontów, blatów, okuć i akcesoriów z pełną specyfikacją.'
+  },
+  {
+    step: '04',
+    title: 'Produkcja i montaż',
+    description: 'Wykonanie mebli przez sprawdzonych producentów i profesjonalny montaż.'
+  }
+];
+
+const materials = [
+  { name: 'MDF lakierowany', description: 'Gładkie, jednolite powierzchnie w dowolnym kolorze' },
+  { name: 'Fornir naturalny', description: 'Szlachetność drewna z nowoczesną trwałością' },
+  { name: 'Laminat HPL', description: 'Wysoka odporność na zarysowania i wilgoć' },
+  { name: 'Szkło i lustro', description: 'Efekt lekkości i optyczne powiększenie przestrzeni' },
+  { name: 'Drewno lite', description: 'Tradycyjne rzemiosło dla wymagających' },
+  { name: 'Akryl i PET', description: 'Połyskliwe wykończenia wysokiej jakości' }
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1600&q=80" 
+        alt="Meble na wymiar Bydgoszcz - By Interior"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/50"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium mb-8">
+          <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
+          Meble szyte na miarę
+        </div>
+        
+        <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 leading-[1.1]">
+          Meble <span class="text-teal-400">na wymiar</span><br/>Bydgoszcz
+        </h1>
+        <p class="text-xl text-white/90 mb-10 leading-relaxed">
+          Projektujemy i realizujemy meble idealnie dopasowane do Twojej przestrzeni. 
+          Każdy projekt powstaje od podstaw, uwzględniając indywidualne potrzeby i styl życia.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#kontakt" class="bg-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-600 transition-all hover:shadow-xl inline-block text-center">
+            Bezpłatna wycena
+          </a>
+          <a href="#typy" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-slate-900 transition-all inline-block text-center">
+            Zobacz ofertę
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 rounded-full text-teal-600 text-sm font-medium mb-6">
+          Dlaczego meble na wymiar
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Perfekcyjne <span class="text-teal-600">dopasowanie</span> do Twojego wnętrza
+        </h2>
+        <p class="text-lg text-slate-600 leading-relaxed mb-12">
+          Meble standardowe nie zawsze odpowiadają na specyficzne potrzeby przestrzeni. 
+          Projektowanie mebli na wymiar pozwala wykorzystać każdy centymetr, 
+          stworzyć unikalne rozwiązania i dopasować estetykę do charakteru wnętrza.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Optymalizacja przestrzeni</h3>
+            <p class="text-slate-600">Wykorzystujemy każdy centymetr, nawet w najtrudniejszych miejscach</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Indywidualny design</h3>
+            <p class="text-slate-600">Unikalne projekty dopasowane do Twojego stylu i potrzeb</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-2">Gwarancja jakości</h3>
+            <p class="text-slate-600">Starannie dobrane materiały i precyzyjne wykonanie</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Furniture Types Section -->
+  <section id="typy" class="py-24 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 rounded-full text-teal-600 text-sm font-medium mb-6">
+          Nasza oferta
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Rodzaje <span class="text-teal-600">mebli</span> na wymiar
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Projektujemy i realizujemy szeroki zakres mebli dostosowanych do indywidualnych potrzeb
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        {furnitureTypes.map((type, index) => (
+          <div 
+            class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="grid md:grid-cols-2">
+              <div class="relative h-64 md:h-auto overflow-hidden">
+                <img 
+                  src={type.image} 
+                  alt={type.title}
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-8 flex flex-col justify-center">
+                <h3 class="font-display text-2xl font-bold text-slate-900 mb-3">{type.title}</h3>
+                <p class="text-slate-600 mb-6 leading-relaxed">{type.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {type.features.map(feature => (
+                    <span class="px-3 py-1 bg-teal-50 text-teal-700 text-sm rounded-full">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 rounded-full text-teal-600 text-sm font-medium mb-6">
+          Proces realizacji
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Jak <span class="text-teal-600">pracujemy</span>
+        </h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="relative">
+          <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-teal-200 hidden md:block"></div>
+          
+          <div class="space-y-12">
+            {process.map((item, index) => (
+              <div class="relative flex gap-8 items-start fade-in-observe" style={`animation-delay: ${index * 150}ms`}>
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0 z-10">
+                  <span class="text-white font-bold text-lg">{item.step}</span>
+                </div>
+                <div class="flex-1 bg-slate-50 p-6 rounded-2xl">
+                  <h3 class="font-display text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials Section -->
+  <section class="py-24 bg-slate-900 text-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold mb-6">
+          Materiały <span class="text-teal-400">najwyższej jakości</span>
+        </h2>
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+          Dobieramy materiały z myślą o trwałości, estetyce i funkcjonalności mebli
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {materials.map((material, index) => (
+          <div 
+            class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors fade-in-observe"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <h3 class="font-display text-lg font-bold text-white mb-2">{material.name}</h3>
+            <p class="text-slate-400 text-sm">{material.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+            Często zadawane <span class="text-teal-600">pytania</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Ile kosztują meble na wymiar?
+              </h3>
+              <svg class="w-5 h-5 text-teal-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Koszt mebli na wymiar zależy od wielu czynników: rodzaju mebla, wymiarów, wybranych materiałów i stopnia skomplikowania projektu. Po konsultacji i pomiarach przygotowujemy szczegółową wycenę dostosowaną do Twoich potrzeb i budżetu.</p>
+            </div>
+          </details>
+
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Jak długo trwa realizacja?
+              </h3>
+              <svg class="w-5 h-5 text-teal-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Standardowy czas realizacji to 4-8 tygodni od zatwierdzenia projektu, w zależności od złożoności zamówienia. Większe projekty mogą wymagać więcej czasu. Dokładny termin ustalamy indywidualnie.</p>
+            </div>
+          </details>
+
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Czy zajmujecie się montażem?
+              </h3>
+              <svg class="w-5 h-5 text-teal-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Tak, oferujemy profesjonalny montaż przez doświadczone ekipy. Montaż jest wliczony w cenę i wykonywany w terminie uzgodnionym z klientem. Dbamy o czystość i porządek podczas prac.</p>
+            </div>
+          </details>
+
+          <details class="group bg-slate-50 rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-100 transition-colors">
+              <h3 class="font-display text-lg font-bold text-slate-900">
+                Jaka jest gwarancja na meble?
+              </h3>
+              <svg class="w-5 h-5 text-teal-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600">
+              <p>Na wszystkie nasze meble udzielamy 24-miesięcznej gwarancji obejmującej wady materiałowe i produkcyjne. Współpracujemy wyłącznie z sprawdzonymi producentami, co przekłada się na wysoką jakość i trwałość mebli.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+  <CTA />
+  <Contact />
+</BaseLayout>

@@ -1,0 +1,367 @@
+---
+// src/pages/architekci-wnetrz.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Team from '../components/Team.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+
+const seoData = {
+  title: 'Architekci Wnętrz Bydgoszcz - Architektura Wnętrz | By Interior',
+  description: 'Doświadczeni architekci wnętrz w Bydgoszczy. Profesjonalna architektura wnętrz mieszkalnych i komercyjnych. Kompleksowe projekty od koncepcji do realizacji.',
+  keywords: 'architekci wnętrz Bydgoszcz, architektura wnętrz Bydgoszcz, architekt wnętrz, projektowanie wnętrz, By Interior',
+  canonical: 'https://by-interior.pl/architekci-wnetrz'
+};
+
+const expertise = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+    </svg>`,
+    title: 'Analiza przestrzeni',
+    description: 'Szczegółowa ocena potencjału aranżacyjnego z uwzględnieniem ergonomii, funkcjonalności i przepływu światła.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+    </svg>`,
+    title: 'Koncepcje projektowe',
+    description: 'Autorskie wizje łączące aktualne trendy z ponadczasową estetyką i charakterem przestrzeni.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+    </svg>`,
+    title: 'Dobór materiałów',
+    description: 'Profesjonalne doradztwo w wyborze materiałów wykończeniowych, mebli i dodatków.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+    </svg>`,
+    title: 'Dokumentacja techniczna',
+    description: 'Kompletne rysunki wykonawcze, specyfikacje materiałowe i kosztorysy.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+    </svg>`,
+    title: 'Wizualizacje 3D',
+    description: 'Fotorealistyczne renderingi pozwalające zobaczyć projekt przed rozpoczęciem prac.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+    </svg>`,
+    title: 'Nadzór autorski',
+    description: 'Kontrola realizacji projektu i współpraca z wykonawcami na każdym etapie.'
+  }
+];
+
+const projectTypes = [
+  { title: 'Mieszkania', projects: '70+', description: 'Od kawalerek po apartamenty' },
+  { title: 'Domy', projects: '35+', description: 'Rezydencje i domy jednorodzinne' },
+  { title: 'Biura', projects: '25+', description: 'Przestrzenie biurowe i coworkingowe' },
+  { title: 'Lokale usługowe', projects: '15+', description: 'Restauracje, gabinety, sklepy' }
+];
+---
+
+<BaseLayout {...seoData}>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80" 
+        alt="Architekci wnętrz Bydgoszcz - By Interior"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/80"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium mb-8">
+        <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
+        Profesjonalna architektura wnętrz
+      </div>
+      
+      <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+        Architekci <span class="text-teal-400">wnętrz</span> Bydgoszcz
+      </h1>
+      <p class="text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Profesjonalna architektura wnętrz oparta na dogłębnym zrozumieniu potrzeb klienta. 
+        Tworzymy przestrzenie, które łączą estetykę z funkcjonalnością i wspierają codzienne życie.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#zespol" class="bg-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-600 transition-all hover:shadow-xl inline-block">
+          Poznaj nasz zespół
+        </a>
+        <a href="/realizacje" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-slate-900 transition-all inline-block">
+          Zobacz realizacje
+        </a>
+      </div>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+        {projectTypes.map(type => (
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/20">
+            <div class="text-3xl font-bold text-teal-400">{type.projects}</div>
+            <div class="text-white font-medium">{type.title}</div>
+            <div class="text-white/60 text-xs mt-1">{type.description}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 rounded-full text-teal-600 text-sm font-medium mb-6">
+            Nasza filozofia
+          </div>
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Architektura wnętrz to <span class="text-teal-600">sztuka równowagi</span>
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Jako architekci wnętrz pracujący w Bydgoszczy wierzymy, że dobrze zaprojektowana przestrzeń 
+            wpływa na samopoczucie i jakość życia. Nasze projekty to synteza estetyki, funkcjonalności 
+            i indywidualnych potrzeb użytkowników.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="fade-in-observe">
+            <h3 class="font-display text-3xl font-bold text-slate-900 mb-6">
+              Podejście oparte na człowieku
+            </h3>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              Architektura wnętrz w naszym wykonaniu zaczyna się od zrozumienia - kim są użytkownicy, 
+              jak funkcjonują na co dzień, czego potrzebują od swojej przestrzeni.
+            </p>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+              Stosujemy holistyczne podejście, integrując wiedzę z zakresu ergonomii, psychologii 
+              przestrzeni i najnowszych trendów. Efektem są wnętrza, które zachwycają i służą ludziom.
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <span class="text-slate-600">Przestrzenie elastyczne, dostosowane do zmieniających się potrzeb</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <span class="text-slate-600">Projektowanie wielozmysłowe angażujące wzrok, dotyk i słuch</span>
+              </li>
+              <li class="flex items-start gap-4">
+                <div class="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <span class="text-slate-600">Rozwiązania wspierające komfort i produktywność</span>
+              </li>
+            </ul>
+          </div>
+          <div class="fade-in-observe">
+            <img 
+              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80" 
+              alt="Architektura wnętrz Bydgoszcz"
+              class="rounded-2xl shadow-2xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section class="py-24 bg-slate-50">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 rounded-full text-teal-600 text-sm font-medium mb-6">
+          Nasze kompetencje
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Doświadczenie i <span class="text-teal-600">wiedza</span>
+        </h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          Kompleksowe usługi architektury wnętrz - od wstępnej analizy po finalizację projektu
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {expertise.map((item, index) => (
+          <div 
+            class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 fade-in-observe group"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <div class="text-teal-600 mb-5 group-hover:scale-110 transition-transform" set:html={item.icon} />
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+            <p class="text-slate-600 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <div id="zespol">
+    <Team />
+  </div>
+
+  <!-- Approach Section -->
+  <section class="py-24 bg-gradient-to-br from-teal-50 to-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Nasze podejście do <span class="text-teal-600">architektury wnętrz</span>
+          </h2>
+          <p class="text-lg text-slate-600">
+            Każdy projekt to unikalna współpraca, którą prowadzimy wspólnie z klientem
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+              <span class="text-teal-600 font-bold text-xl">01</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Słuchamy i analizujemy</h3>
+            <p class="text-slate-600 mb-6">
+              Rozpoczynamy od dogłębnego poznania Twoich oczekiwań. Analizujemy styl życia, 
+              nawyki i marzenia. To fundament każdego udanego projektu.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Wywiad projektowy
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Analiza potrzeb i oczekiwań
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Inwentaryzacja przestrzeni
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+              <span class="text-teal-600 font-bold text-xl">02</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Projektujemy i wizualizujemy</h3>
+            <p class="text-slate-600 mb-6">
+              Tworzymy koncepcje łączące funkcjonalność z estetyką. Prezentujemy różne warianty 
+              rozwiązań, inspirując nowymi możliwościami.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Moodboardy i inspiracje
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Wizualizacje 3D
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Warianty rozwiązań
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+              <span class="text-teal-600 font-bold text-xl">03</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Opracowujemy dokumentację</h3>
+            <p class="text-slate-600 mb-6">
+              Przygotowujemy kompletną dokumentację projektową. Każdy element jest przemyślany, 
+              zwymiarowany i dokładnie opisany.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Rysunki techniczne
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Specyfikacje materiałów
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Kosztorysy
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+              <span class="text-teal-600 font-bold text-xl">04</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-slate-900 mb-4">Realizujemy i nadzorujemy</h3>
+            <p class="text-slate-600 mb-6">
+              Na życzenie prowadzimy nadzór autorski nad realizacją. Współpracujemy z wykonawcami, 
+              dbając o każdy detal.
+            </p>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Nadzór autorski
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Koordynacja wykonawców
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Kontrola jakości
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+  <CTA />
+  <Contact />
+</BaseLayout>

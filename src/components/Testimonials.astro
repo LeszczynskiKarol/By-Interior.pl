@@ -1,5 +1,34 @@
 ---
-const testimonials = [
+// src/components/Testimonials.astro - by-interior.pl
+
+// Definicje typów
+interface GoogleReview {
+  id: string;
+  author: string;
+  verified: boolean;
+  text: string;
+  rating: number;
+  date: string;
+}
+
+interface Testimonial {
+  id?: string;
+  name: string;
+  role: string;
+  content: string;
+  contentTruncated?: string;
+  rating: number;
+  project: string;
+}
+
+interface GoogleApiResponse {
+  reviews: GoogleReview[];
+  rating: number;
+  totalReviews: number;
+}
+
+// Fallback testimonials (używane gdy API nie odpowiada)
+const fallbackTestimonials: Testimonial[] = [
   {
     name: 'Katarzyna M.',
     role: 'Właścicielka apartamentu',
@@ -22,9 +51,62 @@ const testimonials = [
     project: 'Biuro 150m², Centrum Bydgoszczy'
   }
 ];
+
+// Funkcja do skracania tekstu
+function truncateText(text: string, maxLength: number = 300): string {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength).trim() + '...';
+}
+
+// Funkcja do mapowania opinii z Google na format używany w komponencie
+function formatGoogleReviews(googleReviews: GoogleReview[]): Testimonial[] {
+  return googleReviews.map((review: GoogleReview) => ({
+    id: review.id,
+    name: review.author,
+    role: review.verified ? 'Zweryfikowany klient' : 'Klient',
+    content: review.text,
+    contentTruncated: truncateText(review.text),
+    rating: review.rating,
+    project: review.date
+  }));
+}
+
+// Pobieranie opinii z Google API
+let allTestimonials: Testimonial[] = fallbackTestimonials.map(t => ({
+  ...t,
+  contentTruncated: truncateText(t.content)
+}));
+let totalRating: number = 5.0;
+let totalReviews: number = 120;
+
+// Pobierz opinie z Google API
+const apiEndpoint = import.meta.env.PUBLIC_REVIEWS_API_ENDPOINT;
+
+if (apiEndpoint) {
+  try {
+    const response = await fetch(apiEndpoint);
+    
+    if (response.ok) {
+      const data: GoogleApiResponse = await response.json();
+      
+      if (data.reviews && data.reviews.length > 0) {
+        allTestimonials = formatGoogleReviews(data.reviews);
+        totalRating = data.rating || 5.0;
+        totalReviews = data.totalReviews || 120;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch Google reviews:', error);
+  }
+}
+
+// Pierwsze 3 opinie do wyświetlenia
+const initialTestimonials = allTestimonials.slice(0, 3);
+// Dodatkowe opinie (4 i 5)
+const additionalTestimonials = allTestimonials.slice(3, 5);
 ---
 
-<section class="py-24 bg-gradient-to-br from-slate-900 to-slate-950">
+<section class="py-24 bg-gradient-to-br from-slate-900 to-slate-950" id="opinie">
   <div class="container mx-auto px-4 lg:px-8">
     <!-- Header -->
     <div class="text-center mb-16 fade-in-observe">
@@ -35,33 +117,129 @@ const testimonials = [
         Co mówią <span class="text-teal-400">nasi klienci</span>
       </h2>
       <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-        Opinie osób, które zaufały naszemu doświadczeniu i profesjonalizmowi.
+        Zaufało nam już ponad {totalReviews} klientów. Zobacz, co mówią o współpracy z nami.
       </p>
-    </div>
-
-    <!-- Testimonials Grid -->
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {testimonials.map((testimonial, index) => (
-        <div 
-          class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-teal-500/30 transition-colors fade-in-observe"
-          style={`animation-delay: ${index * 100}ms`}
-        >
-          <!-- Rating -->
-          <div class="flex gap-1 mb-6">
-            {[...Array(testimonial.rating)].map(() => (
-              <svg class="w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
+      
+      <!-- Ocena Google -->
+      {totalRating && (
+        <div class="mt-6 flex items-center justify-center gap-3 flex-wrap">
+          <div class="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <svg 
+                class={`w-6 h-6 ${i < Math.floor(totalRating) ? 'text-teal-400' : 'text-slate-600'}`}
+                fill="currentColor" 
+                viewBox="0 0 20 20"
+              >
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
             ))}
           </div>
-          
-          <!-- Quote -->
-          <blockquote class="text-slate-300 leading-relaxed mb-6">
-            "{testimonial.content}"
-          </blockquote>
-          
+          <span class="text-xl font-semibold text-white">{totalRating.toFixed(1)}</span>
+          <span class="text-slate-400">({totalReviews} opinii)</span>
+          <img 
+            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
+            alt="Google" 
+            class="h-5"
+          />
+        </div>
+      )}
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto" id="testimonials-grid">
+      {initialTestimonials.map((testimonial, index) => (
+        <div 
+          class="testimonial-card bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-teal-500/30 transition-all fade-in-observe"
+          style={`animation-delay: ${index * 100}ms`}
+          data-index={index}
+        >
+          <!-- Quote Icon -->
+          <div class="text-teal-500 mb-6">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+
+          <!-- Rating -->
+          <div class="flex gap-1 mb-4">
+            {[...Array(5)].map((_, i) => (
+              <svg 
+                class={`w-5 h-5 ${i < testimonial.rating ? 'text-teal-400' : 'text-slate-600'}`}
+                fill="currentColor" 
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Content -->
+          <div class="testimonial-content relative">
+            <blockquote class="text-slate-300 mb-2 leading-relaxed truncated-text">
+              "{testimonial.contentTruncated || testimonial.content}"
+            </blockquote>
+            <blockquote class="text-slate-300 mb-6 leading-relaxed full-text hidden">
+              "{testimonial.content}"
+            </blockquote>
+            {testimonial.content.length > 300 && (
+              <button class="text-teal-400 hover:text-teal-300 text-sm font-medium toggle-text">
+                Zobacz więcej
+              </button>
+            )}
+          </div>
+
           <!-- Author -->
-          <div class="border-t border-white/10 pt-6">
+          <div class="border-t border-white/10 pt-6 mt-4">
+            <div class="font-semibold text-white">{testimonial.name}</div>
+            <div class="text-sm text-slate-500">{testimonial.role}</div>
+            <div class="text-sm text-teal-400 mt-1">{testimonial.project}</div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Additional testimonials (hidden by default) -->
+      {additionalTestimonials.map((testimonial, index) => (
+        <div 
+          class="testimonial-card additional-testimonial hidden bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-teal-500/30 transition-all"
+          data-index={index + 3}
+        >
+          <!-- Quote Icon -->
+          <div class="text-teal-500 mb-6">
+            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+
+          <!-- Rating -->
+          <div class="flex gap-1 mb-4">
+            {[...Array(5)].map((_, i) => (
+              <svg 
+                class={`w-5 h-5 ${i < testimonial.rating ? 'text-teal-400' : 'text-slate-600'}`}
+                fill="currentColor" 
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Content -->
+          <div class="testimonial-content relative">
+            <blockquote class="text-slate-300 mb-2 leading-relaxed truncated-text">
+              "{testimonial.contentTruncated || testimonial.content}"
+            </blockquote>
+            <blockquote class="text-slate-300 mb-6 leading-relaxed full-text hidden">
+              "{testimonial.content}"
+            </blockquote>
+            {testimonial.content.length > 300 && (
+              <button class="text-teal-400 hover:text-teal-300 text-sm font-medium toggle-text">
+                Zobacz więcej
+              </button>
+            )}
+          </div>
+
+          <!-- Author -->
+          <div class="border-t border-white/10 pt-6 mt-4">
             <div class="font-semibold text-white">{testimonial.name}</div>
             <div class="text-sm text-slate-500">{testimonial.role}</div>
             <div class="text-sm text-teal-400 mt-1">{testimonial.project}</div>
@@ -69,6 +247,21 @@ const testimonials = [
         </div>
       ))}
     </div>
+
+    <!-- Load More Button -->
+    {additionalTestimonials.length > 0 && (
+      <div class="text-center mt-10">
+        <button 
+          id="load-more-testimonials" 
+          class="inline-flex items-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-full transition-all transform hover:scale-105"
+        >
+          <span>Zobacz więcej opinii</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+    )}
 
     <!-- Stats -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16 pt-16 border-t border-white/10">
@@ -85,9 +278,85 @@ const testimonials = [
         <div class="text-slate-500 text-sm">Lat doświadczenia</div>
       </div>
       <div class="text-center">
-        <div class="text-4xl font-bold text-white mb-1">5.0</div>
+        <div class="text-4xl font-bold text-white mb-1">{totalRating.toFixed(1)}</div>
         <div class="text-slate-500 text-sm">Średnia ocena</div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .testimonial-card {
+    position: relative;
+  }
+
+  .additional-testimonial {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Toggle individual testimonial text
+  document.querySelectorAll<HTMLButtonElement>('.toggle-text').forEach(button => {
+    button.addEventListener('click', function(event) {
+      const target = event.currentTarget as HTMLButtonElement;
+      const card = target.closest('.testimonial-card');
+      if (!card) return;
+      
+      const truncated = card.querySelector<HTMLElement>('.truncated-text');
+      const full = card.querySelector<HTMLElement>('.full-text');
+      
+      if (!truncated || !full) return;
+      
+      if (full.classList.contains('hidden')) {
+        truncated.classList.add('hidden');
+        full.classList.remove('hidden');
+        target.textContent = 'Ukryj';
+      } else {
+        truncated.classList.remove('hidden');
+        full.classList.add('hidden');
+        target.textContent = 'Zobacz więcej';
+      }
+    });
+  });
+
+  // Load more testimonials
+  const loadMoreBtn = document.getElementById('load-more-testimonials') as HTMLButtonElement | null;
+  if (loadMoreBtn) {
+    let moreLoaded = false;
+    
+    loadMoreBtn.addEventListener('click', function(event) {
+      const target = event.currentTarget as HTMLButtonElement;
+      const additionalCards = document.querySelectorAll<HTMLElement>('.additional-testimonial');
+      
+      if (!moreLoaded) {
+        additionalCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.remove('hidden');
+          }, index * 100);
+        });
+        
+        target.innerHTML = `
+          <span>Zobacz wszystkie opinie</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+        `;
+        moreLoaded = true;
+      } else {
+        window.open('https://www.google.com/search?sa=X&sca_esv=57724d01b84cf1de&rlz=1C1CHBD_plPL1113PL1113&tbm=lcl&q=Meble+System+-+meble+na+wymiar+Toru%C5%84.+Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2NTAyMrA0szS0NDa0NDU0MzA23cDI-IpR1zc1KSdVIbiyuCQ1V0FXIRfMzUtUKK_MzUwsUgjJLyo92qKn4F-QmZeZuoiVNPUAEA2DFHoAAAA&rldimm=5022096919319516035&hl=pl-PL&ved=2ahUKEwjctpv8hPaPAxXOGxAIHUXNGZAQ9fQKegQIPRAH&biw=960&bih=415&dpr=2#lkt=LocalPoiReviews', '_blank');
+      }
+    });
+  }
+</script>

@@ -1,312 +1,365 @@
 ---
-// src/pages/realizacje.astro
+// src/pages/realizacje.astro - By-Interior
+// Strona realizacji - minimalistyczna galeria bez kategorii i podpisów
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Contact from '../components/Contact.astro';
 
 const seoData = {
-  title: 'Realizacje Projektów Wnętrz Bydgoszcz - Portfolio | ByInterior',
-  description: 'Zobacz nasze realizacje projektów wnętrz w Bydgoszczy. Portfolio mieszkań, domów i przestrzeni komercyjnych zaprojektowanych przez studio ByInterior.',
-  keywords: 'realizacje wnętrz Bydgoszcz, portfolio projektów wnętrz, projekty mieszkań, projekty domów, ByInterior',
+  title: 'Realizacje - Portfolio Projektów Wnętrz | By-Interior',
+  description: 'Zobacz nasze realizacje projektów wnętrz. Galeria mieszkań, domów i przestrzeni komercyjnych.',
+  keywords: 'realizacje wnętrz, portfolio projektów, aranżacje wnętrz, projekty mieszkań, projekty domów',
   canonical: 'https://by-interior.pl/realizacje'
 };
 
-const projects = [
-  {
-    id: 1,
-    title: 'Apartament Śródmieście',
-    category: 'Mieszkanie',
-    area: '78 m²',
-    year: '2024',
-    location: 'Bydgoszcz, Śródmieście',
-    image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80',
-    description: 'Nowoczesny apartament w centrum miasta z otwartą strefą dzienną i przestronną sypialnią.',
-    style: 'Nowoczesny'
-  },
-  {
-    id: 2,
-    title: 'Rezydencja Myślęcinek',
-    category: 'Dom',
-    area: '220 m²',
-    year: '2024',
-    location: 'Bydgoszcz, Myślęcinek',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
-    description: 'Elegancka willa z przestronnym salonem i widokiem na ogród. Naturalne materiały i stonowana paleta.',
-    style: 'Klasyczny nowoczesny'
-  },
-  {
-    id: 3,
-    title: 'Loft Fordońska',
-    category: 'Mieszkanie',
-    area: '95 m²',
-    year: '2024',
-    location: 'Bydgoszcz, Fordon',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
-    description: 'Industrialny charakter połączony z ciepłem drewna. Otwarta przestrzeń z antresolą.',
-    style: 'Industrialny'
-  },
-  {
-    id: 4,
-    title: 'Biuro Creative Hub',
-    category: 'Komercyjne',
-    area: '150 m²',
-    year: '2023',
-    location: 'Bydgoszcz, Centrum',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-    description: 'Nowoczesna przestrzeń coworkingowa z elastycznymi strefami pracy i relaksu.',
-    style: 'Nowoczesny'
-  },
-  {
-    id: 5,
-    title: 'Mieszkanie na Wyżynach',
-    category: 'Mieszkanie',
-    area: '62 m²',
-    year: '2023',
-    location: 'Bydgoszcz, Wyżyny',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80',
-    description: 'Przytulne mieszkanie dla pary z funkcjonalną kuchnią i jasną strefą dzienną.',
-    style: 'Skandynawski'
-  },
-  {
-    id: 6,
-    title: 'Dom w Osielsku',
-    category: 'Dom',
-    area: '180 m²',
-    year: '2023',
-    location: 'Osielsko',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80',
-    description: 'Rodzinny dom z otwartą kuchnią, przestronnym salonem i strefą dla dzieci.',
-    style: 'Nowoczesny'
-  },
-  {
-    id: 7,
-    title: 'Restauracja Zielona',
-    category: 'Komercyjne',
-    area: '120 m²',
-    year: '2023',
-    location: 'Bydgoszcz, Stare Miasto',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
-    description: 'Klimatyczna restauracja z naturalnymi materiałami i roślinnym akcentem.',
-    style: 'Eklektyczny'
-  },
-  {
-    id: 8,
-    title: 'Penthouse Bielawy',
-    category: 'Mieszkanie',
-    area: '130 m²',
-    year: '2022',
-    location: 'Bydgoszcz, Bielawy',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-    description: 'Luksusowy apartament na ostatnim piętrze z panoramicznym widokiem na miasto.',
-    style: 'Minimalistyczny'
-  },
-  {
-    id: 9,
-    title: 'Gabinet stomatologiczny',
-    category: 'Komercyjne',
-    area: '85 m²',
-    year: '2022',
-    location: 'Bydgoszcz, Błonie',
-    image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80',
-    description: 'Nowoczesny gabinet dentystyczny z przyjazną atmosferą dla pacjentów.',
-    style: 'Minimalistyczny'
-  }
+const images = [
+  'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+  'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+  'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp',
+  'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+  'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/28f07804-8ba2-491c-b7c5-ff883c80633e_rw_1920.jpg?h=597c2b19308cd0bf033213254c85855a',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/38de0233-2f3d-4c64-b0bd-a7999f213a57_rw_1920.jpg?h=64053976df41b34b9eeab748e47ff089',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/25faa4c1-d8f9-4f18-82af-18e70f69c568_rw_1920.jpg?h=a8319ae58e602ded3ab7b6816b847dfa',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/1b75e168-9f16-45b7-a877-c2f132b54de9_rw_1920.jpg?h=88ef3ff347f91a33616ade140294a454',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/edef81cf-9b81-4158-ae89-90bede33afa0_rw_1920.jpg?h=db370ddf3eb6d2c277f45bc581888452',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/3bb5db99-771c-4a5a-8242-1d270fcbd38f_rw_1920.jpg?h=b7bfba667ac6468bfaf5b616f2324bda',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220',
+  'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+  'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
 ];
-
-const categories = ['Wszystkie', 'Mieszkanie', 'Dom', 'Komercyjne'];
 ---
 
 <BaseLayout {...seoData}>
   <!-- Hero Section -->
-  <section class="relative py-24 bg-slate-950 overflow-hidden">
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-slate-900">
     <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-teal-950"></div>
-      <div class="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900"></div>
+      <img 
+        src="https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp" 
+        alt=""
+        class="w-full h-full object-cover opacity-50"
+      />
     </div>
     
-    <div class="container mx-auto px-4 lg:px-8 relative z-10">
-      <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/20 rounded-full text-teal-400 text-sm font-medium mb-6">
-          <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
-          Portfolio realizacji
-        </div>
-        <h1 class="font-display text-5xl lg:text-6xl font-bold text-white mb-6">
-          Nasze <span class="text-teal-400">realizacje</span>
-        </h1>
-        <p class="text-xl text-slate-300 leading-relaxed">
-          Przekonaj się, jak pomagamy naszym klientom tworzyć wyjątkowe przestrzenie. 
-          Każdy projekt to unikalna historia i rozwiązania dopasowane do indywidualnych potrzeb.
-        </p>
-      </div>
+    <div class="container mx-auto px-4 lg:px-8 relative z-10 text-center">
+      <h1 class="font-display text-5xl lg:text-7xl font-bold text-white mb-6">
+        Nasze <span class="text-teal-400">realizacje</span>
+      </h1>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="py-12 bg-white border-b border-slate-100">
+  <!-- Gallery Section -->
+  <section class="py-16 bg-white">
     <div class="container mx-auto px-4 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-        <div>
-          <div class="text-4xl font-bold text-teal-600">120+</div>
-          <div class="text-slate-600 text-sm mt-1">Zrealizowanych projektów</div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-teal-600">8</div>
-          <div class="text-slate-600 text-sm mt-1">Lat doświadczenia</div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-teal-600">100%</div>
-          <div class="text-slate-600 text-sm mt-1">Zadowolonych klientów</div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-teal-600">15k+</div>
-          <div class="text-slate-600 text-sm mt-1">m² zaprojektowane</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio Section -->
-  <section class="py-24 bg-slate-50">
-    <div class="container mx-auto px-4 lg:px-8">
-      <!-- Filters -->
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        {categories.map((category, index) => (
-          <button 
-            class={`filter-btn px-6 py-2.5 rounded-full font-medium transition-all ${index === 0 ? 'bg-teal-500 text-white' : 'bg-white text-slate-700 border border-slate-200 hover:border-teal-500 hover:text-teal-600'}`}
-            data-filter={category === 'Wszystkie' ? 'all' : category}
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
+        {images.map((image, index) => (
+          <div 
+            class="gallery-item aspect-square overflow-hidden rounded-xl cursor-pointer"
+            data-index={index}
+            style={`animation-delay: ${index * 50}ms`}
           >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <!-- Projects Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-        {projects.map((project, index) => (
-          <article 
-            class="portfolio-item group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all fade-in-observe"
-            data-category={project.category}
-            style={`animation-delay: ${index * 100}ms`}
-          >
-            <div class="relative h-64 overflow-hidden">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="absolute bottom-4 left-4 right-4">
-                  <span class="inline-block px-3 py-1 bg-teal-500 text-white text-xs rounded-full mb-2">
-                    {project.style}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="p-6">
-              <div class="flex items-center gap-2 text-xs text-teal-600 font-medium mb-2">
-                <span>{project.category}</span>
-                <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                <span>{project.area}</span>
-                <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                <span>{project.year}</span>
-              </div>
-              <h3 class="font-display text-xl font-bold text-slate-900 mb-2">{project.title}</h3>
-              <p class="text-slate-600 text-sm mb-3 line-clamp-2">{project.description}</p>
-              <div class="flex items-center text-xs text-slate-500">
-                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                </svg>
-                {project.location}
-              </div>
-            </div>
-          </article>
+            <img 
+              src={image} 
+              alt=""
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              loading="lazy"
+            />
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Process Teaser -->
-  <section class="py-24 bg-white">
-    <div class="container mx-auto px-4 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-          Chcesz zobaczyć swoją przestrzeń w naszym <span class="text-teal-600">portfolio</span>?
-        </h2>
-        <p class="text-lg text-slate-600 mb-10">
-          Skontaktuj się z nami i opowiedz o swoim projekcie. Każde zlecenie traktujemy indywidualnie, 
-          tworząc rozwiązania idealnie dopasowane do Twoich potrzeb i stylu życia.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#kontakt" class="bg-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-600 transition-all hover:shadow-xl inline-block">
-            Rozpocznij projekt
-          </a>
-          <a href="/studio-projektowania-wnetrz" class="border-2 border-slate-900 text-slate-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-slate-900 hover:text-white transition-all inline-block">
-            Poznaj nas bliżej
-          </a>
-        </div>
-      </div>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="" />
     </div>
-  </section>
+    <button id="lightbox-prev" class="lightbox-nav lightbox-prev" aria-label="Poprzednie">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    <button id="lightbox-next" class="lightbox-nav lightbox-next" aria-label="Następne">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+    <button id="lightbox-close" class="lightbox-close" aria-label="Zamknij">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
 
   <CTA />
   <Contact />
 </BaseLayout>
 
 <style>
-  .filter-btn.active {
-    @apply bg-teal-500 text-white border-teal-500;
-  }
-
-  .portfolio-item {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .portfolio-item.hidden {
-    display: none;
-  }
-
-  .portfolio-item.filtering {
+  /* Gallery items animation */
+  .gallery-item {
     opacity: 0;
-    transform: scale(0.95);
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Lightbox styles */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox-content {
+    position: relative;
+    z-index: 1;
+    max-width: 90vw;
+    max-height: 90vh;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+  }
+
+  .lightbox.active .lightbox-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .lightbox-content img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+
+  .lightbox.active .lightbox-nav {
+    opacity: 1;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .lightbox-prev {
+    left: 20px;
+  }
+
+  .lightbox-next {
+    right: 20px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: none;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+
+  .lightbox.active .lightbox-close {
+    opacity: 1;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    .lightbox-nav {
+      width: 44px;
+      height: 44px;
+    }
+    
+    .lightbox-prev {
+      left: 10px;
+    }
+    
+    .lightbox-next {
+      right: 10px;
+    }
   }
 </style>
 
 <script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  const portfolioItems = document.querySelectorAll<HTMLElement>('.portfolio-item');
+  const images = [
+    'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektMIESZKANIE_CIECHOCINEK_1_opt.webp',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/b266f6f9-7066-4fac-a179-e072ffe0b442_rw_1920.jpg?h=30421dce90a3ad1c299a7e86cc2ab90a',
+    'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_9_opt.webp',
+    'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_JASKOLCZA_TORUN_3_opt.webp',
+    'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektRESTAURACJA_PANORAMA_10_opt.webp',
+    'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektPROJEKT_SALON_Z_ANEKSEM_SZABAT_5_opt.webp',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/ece5504d-43cd-4fe5-8ceb-bdaf94ffcea3_rw_1920.jpg?h=62796c0c4c1839efa2b9c24bd1f2b37c',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/28f07804-8ba2-491c-b7c5-ff883c80633e_rw_1920.jpg?h=597c2b19308cd0bf033213254c85855a',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/38de0233-2f3d-4c64-b0bd-a7999f213a57_rw_1920.jpg?h=64053976df41b34b9eeab748e47ff089',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/25faa4c1-d8f9-4f18-82af-18e70f69c568_rw_1920.jpg?h=a8319ae58e602ded3ab7b6816b847dfa',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/1b75e168-9f16-45b7-a877-c2f132b54de9_rw_1920.jpg?h=88ef3ff347f91a33616ade140294a454',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/edef81cf-9b81-4158-ae89-90bede33afa0_rw_1920.jpg?h=db370ddf3eb6d2c277f45bc581888452',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/3bb5db99-771c-4a5a-8242-1d270fcbd38f_rw_1920.jpg?h=b7bfba667ac6468bfaf5b616f2324bda',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/6125ceb8-cb2a-4a2f-9dc9-e82dcace73a8_rw_1920.jpg?h=7ff6077e6226a1494b3274094fde5f74',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/33e157fd-387a-4497-b8b1-fd535fedba37_rw_3840.jpeg?h=188ec54d0707a0bd69e5a16bdb8de668',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/9d4af452-264d-48e8-b0b4-51de8a0eead3_rw_3840.jpeg?h=cfa372e82abfc7933be056cc847dd048',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/36c5a446-8065-43c4-9f6e-6c8e009e70b2_rw_3840.jpeg?h=7d8b43239c221c416cfb66ab247d9220',
+    'https://cdn.myportfolio.com/41734a72-15e8-43e5-bf6c-48e68f950787/044db97a-3efa-4787-adb0-21e9c2b6a1a3_rw_3840.jpg?h=6ac670c1f706f524a87f4ac20de32a7d',
+    'https://www.meblesystem.pl/wp-content/uploads/2025/09/Dorota-projektSLIWY_POKOJ_DZIECIECY_14_opt.webp',
+  ];
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Update active button
-      filterBtns.forEach(b => {
-        b.classList.remove('active', 'bg-teal-500', 'text-white');
-        b.classList.add('bg-white', 'text-slate-700');
-      });
-      btn.classList.add('active', 'bg-teal-500', 'text-white');
-      btn.classList.remove('bg-white', 'text-slate-700');
+  let currentIndex = 0;
 
-      const filter = btn.dataset.filter;
-      if (!filter) return;
+  const lightbox = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+  const prevBtn = document.getElementById('lightbox-prev') as HTMLButtonElement;
+  const nextBtn = document.getElementById('lightbox-next') as HTMLButtonElement;
+  const closeBtn = document.getElementById('lightbox-close') as HTMLButtonElement;
+  const backdrop = lightbox?.querySelector('.lightbox-backdrop') as HTMLElement;
+  const galleryItems = document.querySelectorAll<HTMLElement>('.gallery-item');
 
-      portfolioItems.forEach(item => {
-        const itemCategory = item.dataset.category;
-        if (filter === 'all' || itemCategory === filter) {
-          item.classList.remove('hidden', 'filtering');
-        } else {
-          item.classList.add('filtering');
-          setTimeout(() => {
-            item.classList.add('hidden');
-          }, 300);
-        }
-      });
+  function openLightbox(index: number): void {
+    currentIndex = index;
+    lightboxImage.src = images[currentIndex];
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(): void {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function showNext(): void {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImage.src = images[currentIndex];
+  }
+
+  function showPrev(): void {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImage.src = images[currentIndex];
+  }
+
+  // Event Listeners
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const index = parseInt(item.dataset.index || '0');
+      openLightbox(index);
     });
   });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  backdrop?.addEventListener('click', closeLightbox);
+  nextBtn?.addEventListener('click', showNext);
+  prevBtn?.addEventListener('click', showPrev);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  lightbox?.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  lightbox?.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe(): void {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        showNext();
+      } else {
+        showPrev();
+      }
+    }
+  }
 </script>

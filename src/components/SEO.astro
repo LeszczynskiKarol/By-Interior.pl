@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const { title, description, keywords, ogImage = "/og-default.jpg", canonical } = Astro.props;
-const siteUrl = "https://by-interior.pl";
+const siteUrl = "https://www.by-interior.pl";
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 ---
 

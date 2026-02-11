@@ -2,6 +2,6 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://by-interior.pl",
+  site: "https://www.by-interior.pl",
   integrations: [tailwind()],
 });

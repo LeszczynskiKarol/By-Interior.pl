@@ -116,10 +116,13 @@ const contactInfo = {
           <h3 class="font-display text-2xl font-bold text-slate-900 mb-6">Formularz kontaktowy</h3>
           
           <form id="contact-form" class="space-y-6">
-            <!-- Honeypot antyspamowy — ukryte pole, wypełniają tylko boty -->
+            <!-- Honeypot antyspamowy — ukryte pole, wypełniają tylko boty.
+                 Nazwa MUSI być bez znaczenia: pole "company" było autouzupełniane przez
+                 przeglądarkę mimo autocomplete="off" i odrzucało prawdziwych klientów
+                 (04.08.2026). Nie zmieniaj z powrotem na nazwę realnego pola. -->
             <div style="position:absolute; left:-9999px;" aria-hidden="true">
-              <label for="company">Firma</label>
-              <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" />
+              <label for="cf-extra">Pozostaw to pole puste</label>
+              <input type="text" id="cf-extra" name="cf_extra" tabindex="-1" autocomplete="off" />
             </div>
             <div class="grid md:grid-cols-2 gap-6">
               <div>
@@ -442,7 +445,7 @@ const contactInfo = {
             email: formData.get('user_email'),
             phone: formData.get('user_phone') || "",
             message: formData.get('message') || "",
-            company: formData.get('company') || "", // honeypot
+            cf_extra: formData.get('cf_extra') || "", // honeypot
             attachments: atts,
             source: __leadSource(),
             referrer: document.referrer || "",
